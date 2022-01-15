@@ -40,6 +40,10 @@ Pour la certification ETSI du produit, le coût serait de 300€/an. La certific
 ## Implémentation logicielle
 
 ## Format LPP des messages
+Pour communiquer entre notre objet et notre serveur, nous envoyons des trames de messages. Ces messages sont découpés en 3 parties :
+* La température qui va être mesurée par le capteur scd30 sur le channel 1.
+* L'humidité qui va être mesurée par le capteur scd30 sur le channel 2.
+* La concentration en CO2 qui va être mesurée par le capteur scd30 sur le channel 3.
 
 ## Logiciel embarqué de l'objet sirène
 
