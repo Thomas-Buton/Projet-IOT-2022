@@ -1,22 +1,22 @@
 # Rapport Projet IOT
 
 ### Sommaire
-* Objectifs du Projet
-* Architecture globale du réseau de sirènes
-* Sécurité globale
-* Architecture matérielle
-* Coût de la BOM (Bill Of Materials) pour 5000 unités
-* Coût des certifications
-* Implémentation logicielle
-* Format LPP des messages 
-* Logiciel embarqué de l'objet sirène
-* Métriques logicielles
-* Changement de comportement de l'objet en fonction des évènements
-* Durée de vie de la batterie
-* Analyse du Cycle de Vie du produit
-* Avantages/Inconvénients des produits concurrents
-* Solutions utilisables pour localiser l'objet sirène
-* Intégrations effectuées
+* [Objectifs du Projet](#objectifs-du-projet)
+* [Architecture globale du réseau de sirènes](#architecture-globale-du-réseau-de-sirènes)
+* [Sécurité globale](#sécurité-globale)
+* [Architecture matérielle](#architecture-matérielle)
+* [Coût de la BOM (Bill Of Materials) pour 5000 unités](#coût-de-la-bom-pour-5000-unités)
+* [Coût des certifications](#coût-des-certifications)
+* [Implémentation logicielle](#implémentation-logicielle)
+* [Format LPP des messages](#format-lpp-des-messages)
+* [Logiciel embarqué de l'objet sirène](#logiciel-embarqué-de-lobjet-sirène)
+* [Métriques logicielles](#métriques-logicielles)
+* [Changement de comportement de l'objet en fonction des évènements](#changement-de-comportement-de-lobjet-en-fonction-des-évènements)
+* [Durée de vie de la batterie](#durée-de-vie-de-la-batterie)
+* [Analyse du Cycle de Vie du produit](#analyse-du-cycle-de-vie-du-produit)
+* [Avantages/Inconvénients des produits concurrents](#avantagesinconvénients-des-produits-concurrents)
+* [Solutions utilisables pour localiser l'objet sirène](#solutions-utilisables-pour-localiser-lobjet-sirène)
+* [Intégrations effectuées](#intégrations-effectuées)
 
 ## Objectifs du Projet
 Le but de ce projet était de créer un détecteur d'incendie. Pour ce faire, nous avions à notre disposition une carte LoRa, une carte ST et des capteurs nécessaires pour détecter la présence d'un incendie (capteur de température, d'humidité, ...).
@@ -37,7 +37,7 @@ Pour la certification ETSI du produit, le coût serait de 300€/an. La certific
 
 ## Implémentation logicielle
 
-## Format LLP des messages
+## Format LPP des messages
 
 ## Logiciel embarqué de l'objet sirène
 
@@ -53,4 +53,4 @@ Pour la certification ETSI du produit, le coût serait de 300€/an. La certific
 
 ## Solutions utilisables pour localiser l'objet sirène
 
-## Intégrations effectués
+## Intégrations effectuées
