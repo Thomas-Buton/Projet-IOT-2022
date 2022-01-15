@@ -31,19 +31,41 @@ static const uint8_t deveui[LORAMAC_DEVEUI_LEN] = { 0x2e, 0x8a, 0x95, 0x7a, 0x66
 static const uint8_t appeui[LORAMAC_APPEUI_LEN] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 static const uint8_t appkey[LORAMAC_APPKEY_LEN] = { 0xD3, 0x74, 0x7E, 0x67, 0xC6, 0x2E, 0x09, 0xEA, 0x80, 0x47, 0x19, 0x54, 0x87, 0x7D, 0x34, 0x11 };
 static cayenne_lpp_t lpp;
+volatile int cas = 0;
 
 
+/* interuption bouton test */
 static void cb(void *arg)
 {
     printf("Pressed BTN%d\n", (int)arg);
-    LED0_TOGGLE;
+    cas += 1;
+    if (cas > 2){
+    	cas = 0;
+    }
+    
 }
+
+/* interuption panic bouton */
+static void cb1(void *arg)
+{
+    printf("Pressed BTN1%d\n", (int)arg);
+    cas = 2;
+    xtimer_usleep(50);
+}
+
+
 
 int main(void)
 {
+	/* initialisation bouton */
 	int cnt = 0;
+	int cnt1 = 0;
 	if (gpio_init_int(BTN0_PIN, BTN0_MODE, TEST_BUT, cb, (void *)cnt) < 0) {
         puts("[FAILED] init BTN0!");
+        return 1;
+    }
+    if (gpio_init_int(BTN1_PIN, BTN1_MODE, TEST_BUT, cb1, (void *)cnt1) < 0) {
+        puts("[FAILED] init BTN1!");
         return 1;
     }
     ++cnt;
@@ -51,7 +73,7 @@ int main(void)
 	 
     
     
-    
+    /* initialisation capteur CO2 / Humidité / temp */
     printf("SCD30 Test:\n");
     int i = 0;
     scd30_init(&scd30_dev, &params);
@@ -74,17 +96,6 @@ int main(void)
     scd30_get_param(&scd30_dev, SCD30_FRC, &value);
     printf("[test][dev-%d] FRC: %u ppm\n", i, value);
 
-    while (i < TEST_ITERATIONS) {
-        xtimer_sleep(1);
-        scd30_read_triggered(&scd30_dev, &result);
-        printf(
-            "[scd30_test-%d] Triggered measurements co2: %.02fppm,"
-            " temp: %.02f°C, hum: %.02f%%. \n", i, result.co2_concentration,
-            result.temperature, result.relative_humidity);
-        i++;
-    }
-
-    i = 0;
     scd30_start_periodic_measurement(&scd30_dev, &interval,
                                      &pressure_compensation);
 
@@ -99,6 +110,7 @@ int main(void)
     }
 		
     scd30_stop_measurements(&scd30_dev);
+    
  /* configure the device parameters */
     semtech_loramac_set_deveui(&loramac, deveui);
     semtech_loramac_set_appeui(&loramac, appeui);
@@ -120,18 +132,44 @@ int main(void)
 
     while (1) {
         /* do some measurements */
+        /* envoie du cas */
+        cayenne_lpp_add_analog_input(&lpp, 0, cas);
+        /* mesure de la temperature */
         int temperature = 0;
         if (lm75_get_temperature(&lm75, &temperature)!= LM75_SUCCESS) {
             puts("Cannot read temperature!");
         }
-        //char message[32];
-        //sprintf(message, "T:%d.%dC",(temperature / 1000), (temperature % 1000));
-        cayenne_lpp_add_temperature(&lpp, 0, (float)temperature / 1000);
-        //printf("Sending message '%s'\n", message);
+		/* envoie de la temerature dans le channel 1 */
+        cayenne_lpp_add_temperature(&lpp, 1, (float)temperature / 1000);
+		
+		/* mesure du capteur sdc */
 		scd30_read_periodic(&scd30_dev, &result);
-
-		cayenne_lpp_add_relative_humidity(&lpp, 1, (float)result.relative_humidity);
-		cayenne_lpp_add_analog_output(&lpp, 2, (float)result.co2_concentration);
+		
+		/* envoie de l'humidité dans le channel 2 */
+		cayenne_lpp_add_relative_humidity(&lpp, 2, (float)result.relative_humidity);
+		
+		/* cas 0 : normal : rien ne se passe*/
+		if (cas == 0)
+		{
+			LED0_OFF;
+			/* envoie de la concentration de CO2 dans le channel 3 */
+			cayenne_lpp_add_analog_input(&lpp, 3, (float)result.co2_concentration/100);
+		}
+		/* cas 1 : anormal : led qui clignote lentement*/
+		else if (cas == 1)
+		{
+			cayenne_lpp_add_analog_input(&lpp, 3, 17.5);
+			LED0_TOGGLE;
+		}
+		/* cas 2 : anormal ++ : led qui clignote rapidement*/
+		else if (cas == 2)
+		{
+			cayenne_lpp_add_analog_input(&lpp, 3, 22.5);
+			LED0_TOGGLE;
+			xtimer_sleep(1);
+			LED0_TOGGLE;
+		}
+			
         /* send the message here */
         uint8_t ret = semtech_loramac_send(&loramac, lpp.buffer, lpp.cursor);
  		if (ret ==0)  {
@@ -142,7 +180,7 @@ int main(void)
         }
         cayenne_lpp_reset(&lpp);
         /* wait 20 seconds between each message */
-        xtimer_sleep(1);
+        xtimer_sleep(10);
         
     }
     
