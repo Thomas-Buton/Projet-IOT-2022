@@ -42,9 +42,11 @@ La certification LoRa Alliance coûte 10000$/an.
 
 ## Format LPP des messages
 Pour communiquer entre notre objet et notre serveur, nous envoyons des trames de messages. Ces messages sont découpés en 3 parties :
+* Le cas de fonctionnement (0 pour fonctionnement normal, 1 pour un fonctionnement anormal et 2 pour un fonctionnement anormal ++) est envoyé sur le channel 0.
 * La température qui va être mesurée par le capteur scd30 sur le channel 1.
 * L'humidité qui va être mesurée par le capteur scd30 sur le channel 2.
 * La concentration en CO2 qui va être mesurée par le capteur scd30 sur le channel 3.
+* Le mode de fonctionnement (0 pour fonctionnement forcé et 1 pour fonctionnement classique) est envoyé sur le channel 4. 
 
 ## Logiciel embarqué de l'objet sirène
 
