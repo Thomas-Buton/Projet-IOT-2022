@@ -58,6 +58,10 @@ Pour communiquer entre notre objet et notre serveur, nous envoyons des trames de
 ## Logiciel embarqué de l'objet sirène
 
 ## Métriques logicielles
+Nous avons 3 grandeurs mesurées : La température, l'humidité et la concentration en CO2.
+* La température est mesurée en °C.
+* L'humidité est mesurée en %.
+* La concentration de CO2 est mesurée en ppm/100 (partie par millions).
 
 ## Changement de comportement de l'objet en fonction des évènements
 
