@@ -35,7 +35,8 @@ Total : 95,70€.
 Nous n'avons pas utilisé de buzzer pour ce projet car nous avons d'abord préféré nous concentrer sur la communication LoRa entre le serveur et notre système.
 
 ## Coût des certifications
-Pour la certification ETSI du produit, le coût serait de 300€/an. La certification LoRa Alliance coûte 10000$/an.
+Pour la certification ETSI du produit, le coût serait de 300€/an. 
+La certification LoRa Alliance coûte 10000$/an.
 
 ## Implémentation logicielle
 
