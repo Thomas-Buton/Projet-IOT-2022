@@ -132,44 +132,70 @@ int main(void)
 
     while (1) {
         /* do some measurements */
-        /* envoie du cas */
-        cayenne_lpp_add_analog_input(&lpp, 0, cas);
+        
         /* mesure de la temperature */
         int temperature = 0;
         if (lm75_get_temperature(&lm75, &temperature)!= LM75_SUCCESS) {
             puts("Cannot read temperature!");
         }
-		/* envoie de la temerature dans le channel 1 */
+	/* envoie de la temerature dans le channel 1 */
         cayenne_lpp_add_temperature(&lpp, 1, (float)temperature / 1000);
 		
-		/* mesure du capteur sdc */
-		scd30_read_periodic(&scd30_dev, &result);
+	/* mesure du capteur sdc */
+	scd30_read_periodic(&scd30_dev, &result);
+	
+	/* envoie de l'humidité dans le channel 2 */
+	cayenne_lpp_add_relative_humidity(&lpp, 2, (float)result.relative_humidity);
+	
+	/* cas 0 : mode de fonctionnement normal : rien ne se passe*/
+	if (cas == 0)
+	{
+		LED0_OFF;
 		
-		/* envoie de l'humidité dans le channel 2 */
-		cayenne_lpp_add_relative_humidity(&lpp, 2, (float)result.relative_humidity);
-		
-		/* cas 0 : normal : rien ne se passe*/
-		if (cas == 0)
-		{
-			LED0_OFF;
+		if (((result.co2_concentration/100)>14.99)&&((result.co2_concentration/100)<19.99)){
+			cas = 1; 
+		}
+		else if ((result.co2_concentration/100)>20) {
+			cas = 2;
+		}
+		else {
 			/* envoie de la concentration de CO2 dans le channel 3 */
 			cayenne_lpp_add_analog_input(&lpp, 3, (float)result.co2_concentration/100);
+			cayenne_lpp_add_digital_input(&lpp, 4, 1);
 		}
-		/* cas 1 : anormal : led qui clignote lentement*/
-		else if (cas == 1)
-		{
+	}
+	/* cas 1 : anormal : led qui clignote lentement*/
+	if (cas == 1)
+	{
+		
+		if (((result.co2_concentration/100)>14.99)&&((result.co2_concentration/100)<19.99)){
+			cayenne_lpp_add_analog_input(&lpp, 3, (float)result.co2_concentration/100);
+			cayenne_lpp_add_digital_input(&lpp, 4, 1);
+		}
+		else {
 			cayenne_lpp_add_analog_input(&lpp, 3, 17.5);
-			LED0_TOGGLE;
+			cayenne_lpp_add_digital_input(&lpp, 4, 0);
 		}
-		/* cas 2 : anormal ++ : led qui clignote rapidement*/
-		else if (cas == 2)
-		{
+		LED0_TOGGLE;
+	}
+	/* cas 2 : anormal ++ : led qui clignote rapidement*/
+	else if (cas == 2)
+	{
+		if ((result.co2_concentration/100)>19.99) {
+			cayenne_lpp_add_analog_input(&lpp, 3, (float)result.co2_concentration/100);
+			cayenne_lpp_add_digital_input(&lpp, 4, 1);
+		}
+		else {
 			cayenne_lpp_add_analog_input(&lpp, 3, 22.5);
-			LED0_TOGGLE;
-			xtimer_sleep(1);
-			LED0_TOGGLE;
+			cayenne_lpp_add_digital_input(&lpp, 4, 0);
 		}
+		LED0_TOGGLE;
+		xtimer_sleep(1);
+		LED0_TOGGLE;
+	}
 			
+	/* envoie du cas */
+        cayenne_lpp_add_analog_input(&lpp, 0, cas);		
         /* send the message here */
         uint8_t ret = semtech_loramac_send(&loramac, lpp.buffer, lpp.cursor);
  		if (ret ==0)  {
