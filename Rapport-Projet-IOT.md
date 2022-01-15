@@ -39,6 +39,7 @@ Coût de la carte LoRa : 26.90€.
 Coût du capteur SCD30 : 68,80€.
 Total : 95,70€.
 Nous n'avons pas utilisé de buzzer pour ce projet car nous avons d'abord préféré nous concentrer sur la communication LoRa entre le serveur et notre système.
+Donc notre coût total pour notre système global est de 5000*95,70 = 478500€.
 
 ## Coût des certifications
 Pour la certification ETSI du produit, le coût serait de 300€/an. 
