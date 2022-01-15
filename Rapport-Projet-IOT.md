@@ -29,8 +29,10 @@ De plus, ce projet avait pour but de mettre en évidence la communication LoRa e
 ## Architecture matérielle
 
 ## Coût de la BOM pour 5000 unités
-Coût de la carte LoRa : 26.90€, coût du capteur SCD30 : 68,80€, Total : 95,7€.
-Nous n'avons pas utilisé de buzzer pour ce projet car nous avons d'abord préféré nous concentrer sur la communication LoRa.
+Coût de la carte LoRa : 26.90€
+Coût du capteur SCD30 : 68,80€
+Total : 95,70€.
+Nous n'avons pas utilisé de buzzer pour ce projet car nous avons d'abord préféré nous concentrer sur la communication LoRa entre le serveur et notre système.
 
 ## Coût des certifications
 Pour la certification ETSI du produit, le coût serait de 300€/an. La certification LoRa Alliance coûte 10000$/an.
