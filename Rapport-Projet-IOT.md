@@ -27,6 +27,12 @@ De plus, ce projet avait pour but de mettre en évidence la communication LoRa e
 ## Sécurité globale
 
 ## Architecture matérielle
+Notre objet est composé de 2 parties (3 en comptant la carte permettant de charger notre programme dans la carte LoRa). Nous avons donc : 
+* La carte LoRa-E5 Dev qui va contenir le programme et qui va communiquer avec le serveur via le protocole LoRa.
+* La carte SCD30 qui contient le capteur de température, le capteur d'humidité et le capteur de concentration de CO2.
+
+Pour le carte SCD30, nous avons relié les ports SCL, SDA, GND et VCC au port série I2C de la carte LoRa-E5 Dev comme on peut le voir sur le schéma ci-dessous.
+![](./dashboard/cablage_materiel_IOT.jpg "Câblage total de notre système avec la carte permettant de charger notre programme")
 
 ## Coût de la BOM pour 5000 unités
 Coût de la carte LoRa : 26.90€.
