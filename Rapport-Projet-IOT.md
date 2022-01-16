@@ -76,6 +76,23 @@ On souhaite estimer la durée de la batterie selon différentes classes. Ces cla
 * La classe A va, pour recevoir les données, envoyer un messages uplink pour que le serveur lui envoie les données. Ensuite, deux courtes plages de détection vont être placées pour détecter l'arrivée de messages downlink. Si un message downlink est détecté, alors on utilise une plus grande plage de détection pour récupérer le message et sinon, on n'utilise que les deux plages de détection. Cette méthode permet d'avoir une utilisation optimale de la batterie car on a des longues plages de temps pendant lesquelles on ne consomme pas de courant.
 * La classe B va utiliser le même principe que la plage A mais en rajoutant des balises autour dans la plage de temps et une plage nommée 'ping slot'. Cette classe permet de recevoir des messages downlink sans envoyées de messages uplink. Cependant, la durée de vie de la batterie est plus courte car on utilise du courant pour réaliser les balises et le 'ping slot'.
 * La classe C va, après avoir envoyé un message uplink, utiliser toute la plage de détection pour recevoir un message. Par conséquent, elle va consommer beaucoup de courant et réduire la durée de vie de la batterie.
+
+Nous avons donc simulé la durée de vie de la batterie pour notre système en fonction des classes. Nous avons obtenu : 
+Nous avons mis à 0 le capteur de lumière et le capteur de présence car nous ne les utilisons pas pour ce projet et nous avons modifié le temps pendant lequel le signal receive2 est réveillé.
+* Pour la classe A : 
+![](./dashboard/classeA.png "Durée de vie pour la classe A")
+On remarque que notre capteur va utiliser 1376 µA et qu'on a 2000mAh en capacité totale de la batterie (cela correspond aux 2 piles présentes dans notre projet).
+On en déduit donc que notre durée de vie est de : 60 jours avec la classe A.
+* Pour la classe B :
+![](./dashboard/classeB.png "Durée de vie pour la classe B")
+On remarque que notre capteur va utiliser 1406 µA et qu'on a 2000mAh en capacité totale de la batterie (cela correspond aux 2 piles présentes dans notre projet).
+On en déduit donc que notre durée de vie est de : 59 jours avec la classe B.
+* Pour la classe C : 
+![](./dashboard/classeC.png "Durée de vie pour la classe C")
+On remarque que notre capteur va utiliser 14861µA et qu'on a 2000mAh en capacité totale de la batterie (cela correspond aux 2 piles présentes dans notre projet).
+On en déduit donc que notre durée de vie est de : 5 jours.
+
+ On remarque que la classe C est à éviter à tout prix du fait de son importante consommation pour un système qui n'en a pas réellement besoin.
 ## Analyse du Cycle de Vie du produit
 
 ## Avantages/Inconvénients des produits concurrents
