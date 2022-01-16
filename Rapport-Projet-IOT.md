@@ -72,5 +72,7 @@ Nous avons 3 grandeurs mesurées : La température, l'humidité et la concentrat
 ## Avantages/Inconvénients des produits concurrents
 
 ## Solutions utilisables pour localiser l'objet sirène
+Pour localiser l'antenne, nous pourrions utiliser le magnétomètre présent sur la carte LoRa et en déduire ses coordonnées grâce au champ magnétique terrestre. Ensuite, les coordonées seraient ajoutées dans la trame des messages envoyées au serveur Cayenne.
+Une autre idée serait de définir dans le programme les coordonnées de l'objet et de les envoyer au serveur quand on appuie sur un bouton qui fonctionnerait avec une interruption pour éviter de bloquer le programme en utilisant le processeur en continu.
 
 ## Intégrations effectuées
