@@ -32,7 +32,7 @@ Notre objet est composé de 2 parties (3 en comptant la carte permettant de char
 * La carte SCD30 qui contient le capteur de température, le capteur d'humidité et le capteur de concentration de CO2.
 
 Pour le carte SCD30, nous avons relié les ports SCL, SDA, GND et VCC au port série I2C de la carte LoRa-E5 Dev comme on peut le voir sur le schéma ci-dessous.
-![](./dashboard/cablage_materiel_IOT.jpg "Câblage total de notre système avec la carte permettant de charger notre programme")
+![cablage materiel](./dashboard/cablage_materiel_IOT.jpg "Câblage total de notre système avec la carte permettant de charger notre programme")
 
 ## Coût de la BOM pour 5000 unités
 Coût de la carte LoRa : 26.90€.
@@ -64,6 +64,12 @@ Nous avons 3 grandeurs mesurées : La température, l'humidité et la concentrat
 * La concentration de CO2 est mesurée en ppm/100 (partie par millions).
 
 ## Changement de comportement de l'objet en fonction des évènements
+Tout d'abord, nous avons une première partie d'initialisation qui va nous permettre de mettre en place la communication LoRa avec le serveur. Ensuite, on réalise des mesures sur la température, l'humidité et la concentration de CO2. En fonction de la concentration de CO2, nous avons 3 cas possibles : 
+* Cas 0 : La concentration de CO2 est inférieure à 15 ppm/100 donc il y a une faible probabilité d'avoir un incendie.
+* Cas 1 : La concentration de CO2 est comprise entre 15 ppm/100 et 20 ppm/100 donc il y a une probabilité moyenne d'avoir un incendie.
+* Cas 2 : La concentration de CO2 est supérieure à 20 ppm/100 donc il y a une forte probabilité d'avoir un incendie.
+Le diagramme complet de notre système est :
+![](./dashboard/diagramme_alarme.png "Câblage total de notre système avec la carte permettant de charger notre programme")
 
 ## Durée de vie de la batterie
 
