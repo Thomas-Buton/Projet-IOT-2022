@@ -72,7 +72,10 @@ Le diagramme complet de notre système est :
 ![](./dashboard/diagramme_alarme.png "Câblage total de notre système avec la carte permettant de charger notre programme")
 
 ## Durée de vie de la batterie
-
+On souhaite estimer la durée de la batterie selon différentes classes. Ces classes correspondent aux méthodes utilisées par notre objet pour envoyer et recevoir des données du server. Chaque classe fonctionne d'une manière différente : 
+* La classe A va, pour recevoir les données, envoyer un messages uplink pour que le serveur lui envoie les données. Ensuite, deux courtes plages de détection vont être placées pour détecter l'arrivée de messages downlink. Si un message downlink est détecté, alors on utilise une plus grande plage de détection pour récupérer le message et sinon, on n'utilise que les deux plages de détection. Cette méthode permet d'avoir une utilisation optimale de la batterie car on a des longues plages de temps pendant lesquelles on ne consomme pas de courant.
+* La classe B va utiliser le même principe que la plage A mais en rajoutant des balises autour dans la plage de temps et une plage nommée 'ping slot'. Cette classe permet de recevoir des messages downlink sans envoyées de messages uplink. Cependant, la durée de vie de la batterie est plus courte car on utilise du courant pour réaliser les balises et le 'ping slot'.
+* La classe C va, après avoir envoyé un message uplink, utiliser toute la plage de détection pour recevoir un message. Par conséquent, elle va consommer beaucoup de courant et réduire la durée de vie de la batterie.
 ## Analyse du Cycle de Vie du produit
 
 ## Avantages/Inconvénients des produits concurrents
