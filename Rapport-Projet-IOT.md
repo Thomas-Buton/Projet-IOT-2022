@@ -9,7 +9,6 @@
 * [Coût des certifications](#coût-des-certifications)
 * [Implémentation logicielle](#implémentation-logicielle)
 * [Format LPP des messages](#format-lpp-des-messages)
-* [Logiciel embarqué de l'objet sirène](#logiciel-embarqué-de-lobjet-sirène)
 * [Métriques logicielles](#métriques-logicielles)
 * [Changement de comportement de l'objet en fonction des évènements](#changement-de-comportement-de-lobjet-en-fonction-des-évènements)
 * [Durée de vie de la batterie](#durée-de-vie-de-la-batterie)
@@ -47,6 +46,7 @@ Pour la certification ETSI du produit, le coût serait de 300€/an.
 La certification LoRa Alliance coûte 10000$/an.
 
 ## Implémentation logicielle
+Voir main.c
 
 ## Format LPP des messages
 Pour communiquer entre notre objet et notre serveur, nous envoyons des trames de messages. Ces messages sont découpés en 5 parties :
@@ -56,7 +56,6 @@ Pour communiquer entre notre objet et notre serveur, nous envoyons des trames de
 * La concentration en CO2 qui va être mesurée par le capteur scd30 sur le channel 3.
 * Le mode de fonctionnement (0 pour fonctionnement forcé et 1 pour fonctionnement classique) est envoyé sur le channel 4. 
 
-## Logiciel embarqué de l'objet sirène
 
 ## Métriques logicielles
 Nous avons 3 grandeurs mesurées : La température, l'humidité et la concentration en CO2.
