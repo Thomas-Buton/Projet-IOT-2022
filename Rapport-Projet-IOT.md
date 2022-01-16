@@ -25,6 +25,7 @@ De plus, ce projet avait pour but de mettre en évidence la communication LoRa e
 ## Architecture globale du réseau de sirènes
 
 ## Sécurité globale
+La sécurité de l'objet passe par une connexion sécurisé et phase de chiffrement point à point du message. Pour établir une connexion sécurisée, on utilise deux clés : APPEUI et DEVEUI et valent respectivement 0x0000000000000000 et 0x2E8A957A6601FB9C. Une fois la connexion sécurisée établie, toutes les données qui seront envoyées seront chiffrées grâce à une clé de chiffrage : APPKEY. Cette dernière vaut 0xD3747E67C62E09EA80471954877D3411 pour notre projet.
 
 ## Architecture matérielle
 Notre objet est composé de 2 parties (3 en comptant la carte permettant de charger notre programme dans la carte LoRa). Nous avons donc : 
