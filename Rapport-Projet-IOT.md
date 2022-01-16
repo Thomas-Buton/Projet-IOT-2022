@@ -100,7 +100,7 @@ On en déduit donc que notre durée de vie est de : 5 jours.
 | Produit | Avantages | Inconvénients |
 | :-----: | :-------: | :-----------: |
 | MClimate CO2 Sensor & Notifier | <ul><li>Faible consommation électrique : 2 AA</li><li>Durée de vie : 10 ans</li><li>Prix : 160€</li></ul> | <ul><li>Faible bruit : 8 dB (risque de ne pas entendre l'alarme)</li><li>Ne fonctionne pas avec des batteries rechargeables</li></ul> |
-
+| ineo-sense ACS Switch Buzz | <ul><li>Fort bruit : jusqu'à 100dB</li><li>Modes d'utilisation multiples</li><li>Faible consommation : Pile au lithium 3.6Ah</li></ul> | <ul><li>Durée de vie : 5 ans</li><li>Prix inconnu</li></ul> | 
 
 ## Solutions utilisables pour localiser l'objet sirène
 Pour localiser l'antenne, nous pourrions utiliser le magnétomètre présent sur la carte LoRa et en déduire ses coordonnées grâce au champ magnétique terrestre. Ensuite, les coordonées seraient ajoutées dans la trame des messages envoyées au serveur Cayenne.
