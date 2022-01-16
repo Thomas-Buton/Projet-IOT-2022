@@ -97,9 +97,14 @@ On en déduit donc que notre durée de vie est de : 5 jours.
 ## Analyse du Cycle de Vie du produit
 
 ## Avantages/Inconvénients des produits concurrents
+| Produit | Avantages | Inconvénients |
+| :-----: | :-------: | :-----------: |
+| MClimate CO2 Sensor & Notifier | <ul><li>Faible consommation électrique : 2 AA</li><li>Durée de vie : 10 ans</li><li>Prix : 160€</li></ul> | <ul><li>Faible bruit : 8 dB (risque de ne pas entendre l'alarme)</li><li>Ne fonctionne pas avec des batteries rechargeables</li></ul> |
+
 
 ## Solutions utilisables pour localiser l'objet sirène
 Pour localiser l'antenne, nous pourrions utiliser le magnétomètre présent sur la carte LoRa et en déduire ses coordonnées grâce au champ magnétique terrestre. Ensuite, les coordonées seraient ajoutées dans la trame des messages envoyées au serveur Cayenne.
 Une autre idée serait de définir dans le programme les coordonnées de l'objet et de les envoyer au serveur quand on appuie sur un bouton qui fonctionnerait avec une interruption pour éviter de bloquer le programme en utilisant le processeur en continu.
 
 ## Intégrations effectuées
+La seule intégration que nous avons utilisé est Cayenne pour l'affichage des données.
