@@ -104,8 +104,8 @@ On en déduit donc que notre durée de vie est de : 5 jours.
 | R602 LoRaWAN Wireless Siren | <ul><li>Simple à installer</li><li>Prix : 179$</li></ul> | <ul><li>Bruit moyen : 80 dB</li><li>Durée de vie : 5 ans</li></ul> |
 
 ## Solutions utilisables pour localiser l'objet sirène
-Pour localiser l'antenne, nous pourrions utiliser le magnétomètre présent sur la carte LoRa et en déduire ses coordonnées grâce au champ magnétique terrestre. Ensuite, les coordonées seraient ajoutées dans la trame des messages envoyées au serveur Cayenne.
-Une autre idée serait de définir dans le programme les coordonnées de l'objet et de les envoyer au serveur quand on appuie sur un bouton qui fonctionnerait avec une interruption pour éviter de bloquer le programme en utilisant le processeur en continu.
+Pour localiser l'antenne, nous pourrions utiliser un capteur GPS que nous pourrions ajouter en module supplémentaire pour obtenir ses coordonnées géographiques. Ensuite, les coordonées seraient ajoutées dans la trame des messages envoyées au serveur Cayenne.
+Une autre idée serait de définir dans le programme les coordonnées de l'objet et de les envoyer au serveur quand on appuie sur un bouton qui fonctionnerait avec une interruption pour éviter de bloquer le programme en utilisant le processeur temps réel en continu.
 
 ## Intégrations effectuées
 La seule intégration que nous avons utilisé est Cayenne pour l'affichage des données.
